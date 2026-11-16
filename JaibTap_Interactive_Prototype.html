@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>جيب تاب | Jaib Tap Prototype</title>
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-card: #1E1E1E;
+            --bg-input: #1A1A1A;
+            --primary-red: #A81C2E;
+            --button-red: #B71C1C;
+            --card-gradient-start: #A81C2E;
+            --card-gradient-end: #6D1520;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --border-color: #333333;
+            --success-green: #4CAF50;
+            --warning-yellow: #FFC107;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", Tahoma, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            max-height: 860px;
+            background-color: var(--bg-primary);
+            position: relative;
+            overflow-y: auto;
+            border-radius: 28px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border: 2px solid #262626;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            height: 38px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .prototype-badge {
+            background-color: rgba(255, 193, 7, 0.15);
+            border: 1px solid var(--warning-yellow);
+            color: var(--warning-yellow);
+            font-size: 11px;
+            text-align: center;
+            padding: 6px;
+            margin: 8px 16px 0;
+            border-radius: 6px;
+        }
+
+        .screen {
+            display: none;
+            padding: 16px 20px 30px;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 22px;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Login Screen */
+        .login-logo {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+
+        .logo-circle {
+            width: 68px;
+            height: 68px;
+            background: var(--button-red);
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(183, 28, 28, 0.4);
+        }
+
+        .login-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0 15px;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: #222;
+            border-radius: 10px;
+            font-size: 13px;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .login-tab.active {
+            background: var(--primary-red);
+            font-weight: bold;
+            border-color: var(--primary-red);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 48px;
+            background: var(--bg-input);
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 0 14px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-red);
+        }
+
+        .btn-primary {
+            width: 100%;
+            height: 50px;
+            background: var(--button-red);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(183, 28, 28, 0.3);
+            transition: 0.2s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .quick-users-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 25px;
+        }
+
+        .quick-users-btn {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-quick {
+            flex: 1;
+            padding: 8px 4px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Home Screen */
+        .home-greeting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, var(--card-gradient-start), var(--card-gradient-end));
+            border-radius: 18px;
+            padding: 20px;
+            margin: 18px 0;
+            box-shadow: 0 8px 24px rgba(168, 28, 46, 0.35);
+            position: relative;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #ffcccc;
+            font-weight: bold;
+        }
+
+        .balance-value-row {
+            margin: 18px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .balance-number {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #f0f0f0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .service-card:active {
+            transform: scale(0.97);
+            border-color: var(--primary-red);
+        }
+
+        .service-card.highlight {
+            background: linear-gradient(180deg, #2b1418, #1e1e1e);
+            border-color: var(--primary-red);
+        }
+
+        .service-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .service-title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .service-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* NFC Scanning */
+        .scan-radar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .radar-icon {
+            font-size: 56px;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .tag-info-box {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 15px;
+        }
+
+        .nfc-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .nfc-action-btn {
+            background: #252525;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            color: white;
+            text-align: right;
+        }
+
+        .nfc-action-btn:hover {
+            border-color: var(--primary-red);
+        }
+
+        /* History list */
+        .tx-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tx-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tx-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #282828;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .toast {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(30,30,30,0.95);
+            border: 1px solid #555;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 13px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <span>6:49</span>
+        <span>جيب تاب • NFC</span>
+        <span>100% 🔋</span>
+    </div>
+
+    <!-- Prototype Warning Notice -->
+    <div class="prototype-badge">
+        ⚠ نموذج تجريبي (Prototype) – محاكاة محلية لشركة عهد للخدمات المالية
+    </div>
+
+    <!-- 1. LOGIN SCREEN -->
+    <div id="screenLogin" class="screen active">
+        <div class="login-logo">
+            <div class="logo-circle">جـ</div>
+            <h1 style="font-size: 22px;">جيب تاب / Jaib Tap</h1>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">قم بتسجيل الدخول للنموذج الأولي</p>
+        </div>
+
+        <div class="login-tabs">
+            <div id="tabPass" class="login-tab active" onclick="setLoginMode('pass')">كلمة المرور</div>
+            <div id="tabPin" class="login-tab" onclick="setLoginMode('pin')">رمز PIN</div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">رقم الموبايل / المحفظة</label>
+            <input type="text" id="loginPhone" class="input-field" value="771000001">
+        </div>
+
+        <div class="input-group">
+            <label id="lblSecret" class="input-label">كلمة المرور</label>
+            <input type="password" id="loginSecret" class="input-field" value="password123">
+        </div>
+
+        <button class="btn-primary" onclick="doLogin()">تسجيل الدخول</button>
+
+        <div class="quick-users-box">
+            <span style="font-size: 12px; color: var(--text-secondary);">💡 تجربة سريعة بدون كتابة:</span>
+            <div class="quick-users-btn">
+                <button class="btn-quick" onclick="quickFill('ahmed')">أحمد (10,000 ريال)</button>
+                <button class="btn-quick" onclick="quickFill('mohammed')">محمد (8,000 ريال)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. HOME SCREEN -->
+    <div id="screenHome" class="screen">
+        <div class="home-greeting">
+            <div>
+                <p style="font-size: 13px; color: var(--text-secondary);">مساء الخير</p>
+                <h3 id="homeUserName" style="font-size: 20px;">أحمد</h3>
+            </div>
+            <div>
+                <button onclick="resetData()" style="padding: 6px 10px; background:#262626; border:1px solid #444; color:#bbb; border-radius:8px; font-size:11px; cursor:pointer;">إعادة ضبط</button>
+                <button onclick="doLogout()" style="padding: 6px 10px; background:#331418; border:1px solid var(--primary-red); color:#ff9999; border-radius:8px; font-size:11px; cursor:pointer; margin-right:4px;">خروج</button>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <div class="card-top">
+                <span>جيب | Jaib</span>
+                <span>حساب ريال يمني</span>
+            </div>
+            <div class="balance-value-row">
+                <span id="homeBalanceVal" class="balance-number">10,000.00</span>
+                <span style="font-size: 16px;">ريال</span>
+                <span style="cursor:pointer;" onclick="toggleBalanceVisibility()">👁</span>
+            </div>
+            <div class="card-bottom">
+                <span id="homeWalletNum">محفظة: 771000001</span>
+                <span id="homeFirqatakBadge" style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:4px;">الفرقة: FRQ100</span>
+            </div>
+        </div>
+
+        <div style="font-size: 15px; font-weight: bold; margin-bottom: 8px;">الخدمات الرئيسية:</div>
+
+        <!-- Services 2x2 Grid -->
+        <div class="services-grid">
+            <div class="service-card highlight" onclick="navTo('screenNfc')">
+                <div class="service-icon">📡</div>
+                <div class="service-title">خدمات NFC</div>
+                <div class="service-desc">سحب • إيداع • فرقتك</div>
+            </div>
+
+            <div class="service-card" onclick="navTo('screenTransfer')">
+                <div class="service-icon">⇄</div>
+                <div class="service-title">تحويل لمشترك</div>
+                <div class="service-desc">بين الحسابات</div>
+            </div>
+
+            <div class="service-card" onclick="navTo('screenPos')">
+                <div class="service-icon">🏬</div>
+                <div class="service-title">دفع المشتريات</div>
+                <div class="service-desc">نقاط البيع والمتاجر</div>
+            </div>
+
+            <div class="service-card" onclick="navTo('screenFirqatak')">
+                <div class="service-icon">👥</div>
+                <div class="service-title">فرقتك</div>
+                <div class="service-desc">المساهمات والجمعية</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 14px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:14px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="navTo('screenHistory')">
+            <span style="font-size: 14px; font-weight:600;">📋 سجل العمليات</span>
+            <span style="color:var(--text-secondary);">←</span>
+        </div>
+    </div>
+
+    <!-- 3. NFC CENTRAL SCREEN -->
+    <div id="screenNfc" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenHome')">→</button>
+            <h2>خدمات تقنية NFC</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="scan-radar">
+            <div class="radar-icon">📡</div>
+            <h3 style="margin-top:10px; font-size:17px;">قرّب الميدالية من ظهر الهاتف</h3>
+            <p style="font-size:12px; color:var(--text-secondary); margin-top:4px;">يدعم شرائح NTAG213 و NTAG 424 DNA</p>
+
+            <!-- زر تفعيل أولوية الاستشعار الحي في الهاتف -->
+            <button id="btnActivateNfc" onclick="startWebNfc()" style="margin-top:14px; background:var(--primary-red); border:none; color:white; padding:10px 16px; border-radius:10px; font-size:13px; font-weight:bold; cursor:pointer; width:100%; box-shadow:0 3px 10px rgba(168,28,46,0.4);">
+                ⚡ اضغط لتفعيل أولوية قراءة NFC الآن
+            </button>
+        </div>
+
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">💡 محاكاة لمس الميداليات (اضغط للاختبار):</div>
+        <div style="display:flex; gap:8px;">
+            <button class="btn-quick" onclick="simulateTagTap('ahmed')">ميدالية أحمد</button>
+            <button class="btn-quick" onclick="simulateTagTap('mohammed')">ميدالية محمد</button>
+            <button class="btn-quick" onclick="simulateTagTap('unknown')">ميدالية جديدة</button>
+        </div>
+
+        <!-- إدخال يدوي لمعرف أي شريحة فيزيائية متوفرة لديك -->
+        <div style="margin-top:14px; background:#1b1b1b; border:1px solid #333; border-radius:10px; padding:10px;">
+            <div style="font-size:11px; color:#aaa; margin-bottom:6px;">أو أدخل كود الشريحة / رقم المحفظة يدوياً:</div>
+            <div style="display:flex; gap:6px;">
+                <input type="text" id="customTagInput" class="input-field" style="height:38px; font-size:13px;" placeholder="04:5A:21:B3:9C:60:80 أو 771000001">
+                <button class="btn-quick" style="width:70px; background:var(--primary-red); border-color:var(--primary-red);" onclick="readCustomTag()">فحص</button>
+            </div>
+        </div>
+
+        <!-- Tag Result Box -->
+        <div id="nfcDetectedCard" class="tag-info-box" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span id="nfcOwnerName" style="font-size:16px; font-weight:bold; color:var(--success-green);">✓ تم التعرف: محمد</span>
+                <span style="background:var(--primary-red); font-size:10px; padding:2px 8px; border-radius:4px;">NTAG213</span>
+            </div>
+            <div id="nfcTagUid" style="font-size:11px; color:#aaa; margin-top:4px;">معرف الشريحة: 04:88:C2:5F:1A:70:81</div>
+
+            <div style="font-size:11px; color:#ffb3b3; background:#2b1418; padding:6px; border-radius:6px; margin-top:8px;">
+                ملاحظة أمان: قراءة NTAG213 تثبت اكتشاف العلامة فقط، ولا تثبت أصالتها أو أمانها المالي.
+            </div>
+
+            <div class="nfc-actions">
+                <div class="nfc-action-btn" onclick="openNfcWithdrawal()">
+                    <span style="font-size:22px;">💳</span>
+                    <div>
+                        <div style="font-weight:bold; font-size:14px;">سحب نقدي من صاحب الميدالية</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">خصم فوري بحد تفويض مخصص</div>
+                    </div>
+                </div>
+
+                <div class="nfc-action-btn" onclick="openNfcDeposit()">
+                    <span style="font-size:22px;">📥</span>
+                    <div>
+                        <div style="font-weight:bold; font-size:14px;">إيداع لحساب صاحب الميدالية</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">تحويل مباشر إلى المحفظة المقروءة</div>
+                    </div>
+                </div>
+
+                <div class="nfc-action-btn" onclick="openNfcFirqatak()">
+                    <span style="font-size:22px;">👥</span>
+                    <div>
+                        <div style="font-weight:bold; font-size:14px;">مساهمة في فرقتك</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">جمع المساهمات باللمس المتتالي</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. WITHDRAWAL SCREEN -->
+    <div id="screenWithdrawal" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenNfc')">→</button>
+            <h2>سحب نقدي عبر NFC</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="tag-info-box">
+            <span style="font-size:11px; color:var(--text-secondary);">صاحب الميدالية:</span>
+            <h3 id="wthOwnerName">محمد</h3>
+            <p id="wthOwnerWallet" style="font-size:12px; color:var(--text-secondary);">محفظة: 771000002</p>
+            <p id="wthAuthLimit" style="font-size:12px; color:var(--warning-yellow); margin-top:6px;">حد التفويض المسموح: 4,000 ريال</p>
+        </div>
+
+        <div class="input-group" style="margin-top:16px;">
+            <label class="input-label">المبلغ المطلوب سحبه (ريال)</label>
+            <input type="number" id="wthAmount" class="input-field" value="1000">
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">رمز التفويض السري (افتراضي: 1122)</label>
+            <input type="password" id="wthAuthCode" class="input-field" value="1122">
+        </div>
+
+        <button class="btn-primary" onclick="executeWithdrawal()">تأكيد تنفيذ السحب</button>
+    </div>
+
+    <!-- 5. DEPOSIT SCREEN -->
+    <div id="screenDeposit" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenNfc')">→</button>
+            <h2>إيداع عبر NFC</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="tag-info-box">
+            <span style="font-size:11px; color:var(--text-secondary);">إيداع إلى حساب المستفيد:</span>
+            <h3 id="depBeneficiaryName">محمد</h3>
+            <p id="depBeneficiaryWallet" style="font-size:12px; color:var(--text-secondary);">محفظة: 771000002</p>
+        </div>
+
+        <div class="input-group" style="margin-top:16px;">
+            <label class="input-label">مبلغ الإيداع (ريال)</label>
+            <input type="number" id="depAmount" class="input-field" value="500">
+        </div>
+
+        <button class="btn-primary" onclick="executeDeposit()">تأكيد الإيداع الآن</button>
+    </div>
+
+    <!-- 6. FIRQATAK NFC SCREEN -->
+    <div id="screenFirqatakNfc" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenNfc')">→</button>
+            <h2>جمع مساهمات فرقتك باللمس</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="balance-card" style="padding:16px; margin:0 0 15px;">
+            <div style="font-size:12px; color:#ffcccc;">كود فرقة المجمّع الحالي:</div>
+            <h2 id="frqCodeDisplay" style="font-size:26px;">FRQ100</h2>
+            <div style="font-size:12px; margin-top:4px;">المسؤول: أحمد (771000001)</div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">مبلغ المساهمة المحدد لكل لمسة (ريال)</label>
+            <input type="number" id="frqAmountInput" class="input-field" value="500">
+        </div>
+
+        <div class="tag-info-box" style="margin-top:0;">
+            <span style="font-size:11px; color:var(--text-secondary);">المشارك الجاهز للمساهمة:</span>
+            <h3 id="frqParticipantName">محمد (771000002)</h3>
+            <button class="btn-primary" style="margin-top:10px; height:44px;" onclick="executeFirqatakContribution()">تأكيد استلام المساهمة باللمس</button>
+        </div>
+
+        <div style="font-size:13px; font-weight:bold; margin:16px 0 8px;">سجل مساهمات هذه الفرقة:</div>
+        <div id="frqContributionsList"></div>
+    </div>
+
+    <!-- 7. SUBSCRIBER TRANSFER -->
+    <div id="screenTransfer" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenHome')">→</button>
+            <h2>تحويل إلى مشترك</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">رقم الموبايل أو المحفظة</label>
+            <input type="text" id="trfRecipient" class="input-field" value="771000002">
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">المبلغ (ريال)</label>
+            <input type="number" id="trfAmount" class="input-field" value="300">
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">ملاحظات (اختياري)</label>
+            <input type="text" id="trfNotes" class="input-field" placeholder="سبب التحويل">
+        </div>
+
+        <button class="btn-primary" onclick="executeTransfer()">استمرار وتأكيد التحويل</button>
+    </div>
+
+    <!-- 8. POS TRANSFER -->
+    <div id="screenPos" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenHome')">→</button>
+            <h2>دفع المشتريات</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">رقم نقطة البيع (POS)</label>
+            <input type="text" id="posNumber" class="input-field" value="771000003">
+            <span style="font-size:11px; color:var(--success-green); margin-top:2px; display:block;">المتجر: متجر التجربة</span>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">المبلغ (ريال)</label>
+            <input type="number" id="posAmount" class="input-field" value="450">
+        </div>
+
+        <button class="btn-primary" onclick="executePos()">استمرار وتأكيد الدفع</button>
+    </div>
+
+    <!-- 9. FIRQATAK GENERAL -->
+    <div id="screenFirqatak" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenHome')">→</button>
+            <h2>فرقتك</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div class="balance-card">
+            <div style="font-size:12px; color:#ffcccc;">كود الفرقة النشط:</div>
+            <h1 style="font-size:32px;">FRQ100</h1>
+            <div style="margin-top:10px; display:flex; justify-content:space-between;">
+                <span>المبالغ المجمعة: <strong id="frqTotalVal">0.00</strong> ريال</span>
+            </div>
+        </div>
+
+        <button class="btn-primary" onclick="navTo('screenFirqatakNfc')">⚡ بدء جمع المساهمات عبر NFC</button>
+    </div>
+
+    <!-- 10. HISTORY SCREEN -->
+    <div id="screenHistory" class="screen">
+        <div class="header">
+            <button class="btn-back" onclick="navTo('screenHome')">→</button>
+            <h2>سجل العمليات</h2>
+            <div style="width:36px;"></div>
+        </div>
+
+        <div id="historyListContainer"></div>
+    </div>
+
+    <!-- Toast message -->
+    <div id="toast" class="toast"></div>
+</div>
+
+<script>
+    // State & Mock Data
+    const state = {
+        users: {
+            "771000001": { name: "أحمد", phone: "771000001", wallet: "771000001", balance: 10000, pin: "1234", pass: "password123", limit: 5000, auth: "9988", firqatak: "FRQ100", tag: "04:5A:21:B3:9C:60:80" },
+            "771000002": { name: "محمد", phone: "771000002", wallet: "771000002", balance: 8000, pin: "5678", pass: "password123", limit: 4000, auth: "1122", firqatak: null, tag: "04:88:C2:5F:1A:70:81" }
+        },
+        merchants: {
+            "771000003": { name: "متجر التجربة", pos: "771000003", balance: 25000 }
+        },
+        currentUser: null,
+        detectedTagUser: null,
+        transactions: [
+            { id: "TX-101", type: "تحويل مشترك", amount: 250, desc: "إلى محمد", date: "2026/11/16", isDebit: true, nfc: false }
+        ],
+        firqatakList: []
+    };
+
+    // Load from localStorage if present
+    const saved = localStorage.getItem("jaib_tap_web_state");
+    if (saved) {
+        try { Object.assign(state, JSON.parse(saved)); } catch(e){}
+    }
+
+    function saveState() {
+        localStorage.setItem("jaib_tap_web_state", JSON.stringify(state));
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.innerText = msg;
+        t.style.display = "block";
+        setTimeout(() => { t.style.display = "none"; }, 3000);
+    }
+
+    function navTo(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+        if (screenId === 'screenHome') updateHome();
+        if (screenId === 'screenHistory') renderHistory();
+    }
+
+    let isPinMode = false;
+    function setLoginMode(mode) {
+        isPinMode = (mode === 'pin');
+        document.getElementById("tabPass").classList.toggle("active", !isPinMode);
+        document.getElementById("tabPin").classList.toggle("active", isPinMode);
+        document.getElementById("lblSecret").innerText = isPinMode ? "رمز PIN" : "كلمة المرور";
+        document.getElementById("loginSecret").value = isPinMode ? "1234" : "password123";
+    }
+
+    function quickFill(user) {
+        if (user === 'ahmed') {
+            document.getElementById("loginPhone").value = "771000001";
+            document.getElementById("loginSecret").value = isPinMode ? "1234" : "password123";
+        } else {
+            document.getElementById("loginPhone").value = "771000002";
+            document.getElementById("loginSecret").value = isPinMode ? "5678" : "password123";
+        }
+    }
+
+    function doLogin() {
+        const phone = document.getElementById("loginPhone").value.trim();
+        const secret = document.getElementById("loginSecret").value.trim();
+        const u = state.users[phone];
+        if (u && (isPinMode ? u.pin === secret : u.pass === secret)) {
+            state.currentUser = u;
+            saveState();
+            navTo('screenHome');
+            showToast("أهلاً بك يا " + u.name);
+        } else {
+            showToast("رقم الهاتف أو كلمة المرور غير صحيحة");
+        }
+    }
+
+    function doLogout() {
+        state.currentUser = null;
+        saveState();
+        navTo('screenLogin');
+    }
+
+    function resetData() {
+        localStorage.removeItem("jaib_tap_web_state");
+        location.reload();
+    }
+
+    let balanceHidden = false;
+    function toggleBalanceVisibility() {
+        balanceHidden = !balanceHidden;
+        updateHome();
+    }
+
+    function updateHome() {
+        const u = state.currentUser || state.users["771000001"];
+        document.getElementById("homeUserName").innerText = u.name;
+        document.getElementById("homeBalanceVal").innerText = balanceHidden ? "••••••" : Number(u.balance).toLocaleString('en-US', {minimumFractionDigits: 2});
+        document.getElementById("homeWalletNum").innerText = "محفظة: " + u.wallet;
+        document.getElementById("homeFirqatakBadge").style.display = u.firqatak ? "inline-block" : "none";
+    }
+
+    function simulateTagTap(target) {
+        const card = document.getElementById("nfcDetectedCard");
+        if (target === 'unknown') {
+            alert("ميدالية غير معروفة (UID: 04:AA:BB:CC)\nتستطيع في التطبيق ربطها بحساب أحمد أو محمد.");
+            card.style.display = "none";
+            return;
+        }
+
+        const u = (target === 'ahmed') ? state.users["771000001"] : state.users["771000002"];
+        state.detectedTagUser = u;
+        document.getElementById("nfcOwnerName").innerText = "✓ تم التعرف: " + u.name;
+        document.getElementById("nfcTagUid").innerText = "معرف الشريحة: " + u.tag;
+        card.style.display = "block";
+        showToast("تمت قراءة ميدالية " + u.name + " بنجاح");
+    }
+
+    function openNfcWithdrawal() {
+        const u = state.detectedTagUser;
+        document.getElementById("wthOwnerName").innerText = u.name;
+        document.getElementById("wthOwnerWallet").innerText = "محفظة: " + u.wallet;
+        document.getElementById("wthAuthLimit").innerText = "حد التفويض المسموح: " + u.limit + " ريال";
+        document.getElementById("wthAuthCode").value = u.auth;
+        navTo('screenWithdrawal');
+    }
+
+    function openNfcDeposit() {
+        const u = state.detectedTagUser;
+        document.getElementById("depBeneficiaryName").innerText = u.name;
+        document.getElementById("depBeneficiaryWallet").innerText = "محفظة: " + u.wallet;
+        navTo('screenDeposit');
+    }
+
+    function openNfcFirqatak() {
+        const u = state.detectedTagUser;
+        document.getElementById("frqParticipantName").innerText = u.name + " (" + u.wallet + ")";
+        navTo('screenFirqatakNfc');
+    }
+
+    function executeWithdrawal() {
+        const u = state.detectedTagUser;
+        const amt = parseFloat(document.getElementById("wthAmount").value);
+        const code = document.getElementById("wthAuthCode").value.trim();
+
+        if (amt > u.limit) {
+            alert("المبلغ يتجاوز حد التفويض المسموح (" + u.limit + " ريال)");
+            return;
+        }
+        if (code !== u.auth) {
+            alert("رمز التفويض غير صحيح!");
+            return;
+        }
+        if (u.balance < amt) {
+            alert("رصيد صاحب الميدالية غير كافٍ");
+            return;
+        }
+
+        u.balance -= amt;
+        state.transactions.unshift({
+            id: "TX-WTH-" + Date.now(),
+            type: "سحب نقدي (NFC)",
+            amount: amt,
+            desc: "خصم من " + u.name,
+            date: new Date().toLocaleTimeString('ar-YE'),
+            isDebit: true,
+            nfc: true
+        });
+        saveState();
+        alert("✓ تمت عملية السحب بنجاح بموجب تفويض الميدالية!");
+        navTo('screenHome');
+    }
+
+    function executeDeposit() {
+        const sender = state.currentUser || state.users["771000001"];
+        const receiver = state.detectedTagUser;
+        const amt = parseFloat(document.getElementById("depAmount").value);
+
+        if (sender.balance < amt) {
+            alert("رصيدك غير كافٍ لإتمام الإيداع");
+            return;
+        }
+
+        sender.balance -= amt;
+        receiver.balance += amt;
+        state.transactions.unshift({
+            id: "TX-DEP-" + Date.now(),
+            type: "إيداع عبر NFC",
+            amount: amt,
+            desc: "إيداع لـ " + receiver.name,
+            date: new Date().toLocaleTimeString('ar-YE'),
+            isDebit: true,
+            nfc: true
+        });
+        saveState();
+        alert("✓ تم إيداع المبلغ بنجاح في حساب صاحب الميدالية!");
+        navTo('screenHome');
+    }
+
+    function executeFirqatakContribution() {
+        const host = state.currentUser || state.users["771000001"];
+        const participant = state.detectedTagUser || state.users["771000002"];
+        const amt = parseFloat(document.getElementById("frqAmountInput").value);
+
+        if (participant.balance < amt) {
+            alert("رصيد " + participant.name + " غير كافٍ للمساهمة");
+            return;
+        }
+
+        participant.balance -= amt;
+        host.balance += amt;
+
+        state.firqatakList.unshift({
+            name: participant.name,
+            wallet: participant.wallet,
+            amount: amt,
+            time: new Date().toLocaleTimeString('ar-YE')
+        });
+
+        state.transactions.unshift({
+            id: "TX-FRQ-" + Date.now(),
+            type: "فرقتك (NFC)",
+            amount: amt,
+            desc: "مساهمة من " + participant.name,
+            date: new Date().toLocaleTimeString('ar-YE'),
+            isDebit: false,
+            nfc: true
+        });
+
+        saveState();
+        renderFirqatak();
+        showToast("✓ تم استلام مساهمة " + participant.name);
+    }
+
+    function renderFirqatak() {
+        const container = document.getElementById("frqContributionsList");
+        container.innerHTML = "";
+        let total = 0;
+        state.firqatakList.forEach(item => {
+            total += item.amount;
+            container.innerHTML += `
+                <div style="background:#222; border:1px solid #333; padding:10px 14px; border-radius:10px; margin-bottom:6px; display:flex; justify-content:space-between;">
+                    <div><strong>${item.name}</strong> <span style="font-size:11px; color:#888;">(${item.wallet})</span></div>
+                    <div style="color:var(--success-green); font-weight:bold;">+ ${item.amount} ريال</div>
+                </div>
+            `;
+        });
+        document.getElementById("frqTotalVal").innerText = total.toLocaleString();
+    }
+
+    function executeTransfer() {
+        const sender = state.currentUser || state.users["771000001"];
+        const recWallet = document.getElementById("trfRecipient").value.trim();
+        const amt = parseFloat(document.getElementById("trfAmount").value);
+        const receiver = state.users[recWallet];
+
+        if (!receiver) {
+            alert("رقم المحفظة غير مسجل في البيانات التجريبية (جرب 771000002)");
+            return;
+        }
+        if (sender.balance < amt) {
+            alert("الرصيد غير كافٍ");
+            return;
+        }
+
+        sender.balance -= amt;
+        receiver.balance += amt;
+        state.transactions.unshift({
+            id: "TX-TRF-" + Date.now(),
+            type: "تحويل لمشترك",
+            amount: amt,
+            desc: "إلى " + receiver.name,
+            date: new Date().toLocaleTimeString('ar-YE'),
+            isDebit: true,
+            nfc: false
+        });
+        saveState();
+        alert("✓ تم التحويل بنجاح!");
+        navTo('screenHome');
+    }
+
+    function executePos() {
+        const sender = state.currentUser || state.users["771000001"];
+        const posNum = document.getElementById("posNumber").value.trim();
+        const amt = parseFloat(document.getElementById("posAmount").value);
+        const merchant = state.merchants[posNum];
+
+        if (!merchant) {
+            alert("نقطة البيع غير موجودة");
+            return;
+        }
+        if (sender.balance < amt) {
+            alert("رصيدك غير كافٍ");
+            return;
+        }
+
+        sender.balance -= amt;
+        merchant.balance += amt;
+        state.transactions.unshift({
+            id: "TX-POS-" + Date.now(),
+            type: "دفع مشتريات",
+            amount: amt,
+            desc: merchant.name,
+            date: new Date().toLocaleTimeString('ar-YE'),
+            isDebit: true,
+            nfc: false
+        });
+        saveState();
+        alert("✓ تم دفع المشتريات لـ " + merchant.name + " بنجاح!");
+        navTo('screenHome');
+    }
+
+    function renderHistory() {
+        const container = document.getElementById("historyListContainer");
+        container.innerHTML = "";
+        state.transactions.forEach(t => {
+            container.innerHTML += `
+                <div class="tx-item">
+                    <div class="tx-left">
+                        <div class="tx-icon-box">${t.nfc ? '📡' : '⇄'}</div>
+                        <div>
+                            <div style="font-size:14px; font-weight:bold;">${t.type} ${t.nfc ? '<span style="font-size:10px; color:var(--primary-red); background:#2b1418; padding:1px 5px; border-radius:4px;">NFC</span>' : ''}</div>
+                            <div style="font-size:12px; color:var(--text-secondary);">${t.desc}</div>
+                            <div style="font-size:10px; color:#777;">${t.date}</div>
+                        </div>
+                    </div>
+                    <div style="text-align:left;">
+                        <div style="font-weight:bold; font-size:15px; color:${t.isDebit ? 'var(--primary-red)' : 'var(--success-green)'};">
+                            ${t.isDebit ? '-' : '+'} ${t.amount} ريال
+                        </div>
+                        <div style="font-size:10px; color:var(--success-green);">ناجحة ✓</div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function readCustomTag() {
+        const val = document.getElementById("customTagInput").value.trim().toUpperCase();
+        if (!val) {
+            alert("يرجى إدخال كود الشريحة أو رقم المحفظة");
+            return;
+        }
+
+        // إذا كان رقم المحفظة
+        if (state.users[val]) {
+            state.detectedTagUser = state.users[val];
+            document.getElementById("nfcOwnerName").innerText = "✓ تم التعرف: " + state.detectedTagUser.name;
+            document.getElementById("nfcTagUid").innerText = "معرف الشريحة: " + state.detectedTagUser.tag;
+            document.getElementById("nfcDetectedCard").style.display = "block";
+            showToast("تم التعرف على الشريحة بحساب: " + state.detectedTagUser.name);
+            return;
+        }
+
+        // إذا كان UID مطابق لمستخدم
+        let matched = null;
+        for (let k in state.users) {
+            if (state.users[k].tag === val || state.users[k].tag.replace(/:/g, '') === val.replace(/:/g, '')) {
+                matched = state.users[k];
+                break;
+            }
+        }
+
+        if (matched) {
+            state.detectedTagUser = matched;
+            document.getElementById("nfcOwnerName").innerText = "✓ تم التعرف: " + matched.name;
+            document.getElementById("nfcTagUid").innerText = "معرف الشريحة: " + matched.tag;
+            document.getElementById("nfcDetectedCard").style.display = "block";
+            showToast("تم التعرف على الشريحة بحساب: " + matched.name);
+        } else {
+            // شريحة جديدة - خيار الربط
+            const choice = confirm("شريحة فيزيائية جديدة (UID: " + val + ").\nهل تود ربط هذه الشريحة بحساب أحمد؟ (اضغط Cancel لربطها بمحمد)");
+            const userToLink = choice ? state.users["771000001"] : state.users["771000002"];
+            userToLink.tag = val;
+            saveState();
+            state.detectedTagUser = userToLink;
+            document.getElementById("nfcOwnerName").innerText = "✓ تم ربط الشريحة بـ: " + userToLink.name;
+            document.getElementById("nfcTagUid").innerText = "معرف الشريحة: " + val;
+            document.getElementById("nfcDetectedCard").style.display = "block";
+            showToast("تم ربط الشريحة بنجاح لحساب " + userToLink.name);
+        }
+    }
+
+    function playBeep() {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = "sine";
+            osc.frequency.value = 900;
+            gain.gain.value = 0.25;
+            osc.start();
+            setTimeout(() => { osc.stop(); }, 180);
+        } catch(e){}
+        if (navigator.vibrate) {
+            navigator.vibrate([150, 50, 150]);
+        }
+    }
+
+    // Web NFC Support (if run on physical Android Chrome with NFC turned on)
+    let ndefStarted = false;
+    async function startWebNfc() {
+        if (!('NDEFReader' in window)) {
+            alert("تنبيه: متصفحك الحالي لا يتيح Web NFC مباشرة.\n\nلتفعيل قراءة الشريحة الحقيقية من المتصفح:\n1. افتح الرابط في متصفح Google Chrome على هاتف Android.\n2. تأكد من تفعيل خاصية NFC في إعدادات الهاتف.\n\nملاحظة: يمكنك دائماً إدخال كود الشريحة أو رقم المحفظة في الخانة أدناه لتجربة جميع العمليات فوراً!");
+            return;
+        }
+        try {
+            const ndef = new NDEFReader();
+            await ndef.scan();
+            ndefStarted = true;
+            const btn = document.getElementById("btnActivateNfc");
+            if (btn) {
+                btn.innerHTML = "🟢 أولوية القراءة مفعلة للتطبيق – قرّب الميدالية الآن";
+                btn.style.background = "#1b5e20";
+            }
+            showToast("✓ تم حجز أولوية NFC للتطبيق! قرّب الشريحة من ظهر الهاتف");
+            ndef.onreading = event => {
+                playBeep();
+                const uid = event.serialNumber ? event.serialNumber.toUpperCase() : "NFC-CARD";
+                // قراءة محتوى NDEF Text إن وُجد
+                let textContent = "";
+                for (const record of event.message.records) {
+                    if (record.recordType === "text") {
+                        const textDecoder = new TextDecoder(record.encoding);
+                        textContent = textDecoder.decode(record.data);
+                    }
+                }
+                const searchKey = textContent.trim() || uid;
+                document.getElementById("customTagInput").value = searchKey;
+                readCustomTag();
+            };
+        } catch(err) {
+            alert("حدث تنبيه من المتصفح:\n" + err.message + "\nيرجى منح المتصفح إذن استخدام الـ NFC والتأكد من تشغيله في الهاتف.");
+        }
+    }
+</script>
+</body>
+</html>
