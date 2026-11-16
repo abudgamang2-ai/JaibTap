@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_dark"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:gravity="center_vertical">
+
+    <!-- أيقونة نوع العملية -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_button_secondary">
+
+        <ImageView
+            android:id="@+id/ivTxIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_transfer"
+            app:tint="@color/primary_red_light" />
+    </FrameLayout>
+
+    <!-- تفاصيل العملية والتاريخ -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="14dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvTxType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تحويل مشترك"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvNfcBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NFC"
+                android:textColor="@color/primary_red_light"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="#22A81C2E"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="1dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTxDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="إلى محمد (771000002)"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/tvTxDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2026/11/16 17:51"
+            android:textColor="@color/text_hint"
+            android:textSize="11sp"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <!-- المبلغ والحالة (سالب أحمر أو موجب أخضر) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/tvTxAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-250.00"
+            android:textColor="@color/primary_red_light"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ريال يمني"
+            android:textColor="@color/text_hint"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvTxStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ناجحة"
+            android:textColor="@color/success_green"
+            android:textSize="10sp"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+</LinearLayout>

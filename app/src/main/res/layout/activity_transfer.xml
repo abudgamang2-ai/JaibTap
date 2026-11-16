@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- الرأس والرجوع (مطابق للصورة المرجعية) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_back"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/transfer_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- أيقونة التحويل الدائرية في المنتصف كما في الصورة -->
+        <FrameLayout
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_button_secondary"
+            android:layout_marginTop="24dp">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_transfer"
+                app:tint="@color/primary_red_light" />
+        </FrameLayout>
+
+        <!-- حقل العملة والرصيد (مطابق للصورة) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/bg_input_field"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="28dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_eye"
+                app:tint="@color/text_secondary" />
+
+            <TextView
+                android:id="@+id/tvAvailableBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ريال يمني | 10,000"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- حقل رقم الموبايل أو المحفظة -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/etRecipientWallet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input_field"
+                android:hint="رقم الموبايل أو الرقم البديل"
+                android:inputType="phone"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/text_hint" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
+
+            <!-- زر مسح أو تعبئة سريعة -->
+            <ImageButton
+                android:id="@+id/btnQuickPick"
+                android:layout_width="@dimen/input_height"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_input_field"
+                android:src="@drawable/ic_transfer"
+                app:tint="@color/button_red"
+                android:contentDescription="Select demo user" />
+        </LinearLayout>
+
+        <!-- اسم المستفيد إن وُجد -->
+        <TextView
+            android:id="@+id/tvResolvedName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="المستفيد: محمد (محفظة معتمدة)"
+            android:textColor="@color/success_green"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp"
+            android:visibility="gone" />
+
+        <!-- حقل المبلغ -->
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/bg_input_field"
+            android:hint="@string/amount"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_hint"
+            android:layout_marginTop="16dp" />
+
+        <!-- حقل ملاحظات -->
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/bg_input_field"
+            android:hint="@string/notes"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_hint"
+            android:layout_marginTop="16dp" />
+
+        <!-- زر استمرار عريض أحمر مطابق للصورة المرجعية -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/bg_button_primary"
+            app:backgroundTint="@null"
+            android:text="@string/continue_btn"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+</ScrollView>

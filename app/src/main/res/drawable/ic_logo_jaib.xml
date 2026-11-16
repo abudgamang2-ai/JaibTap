@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Jaib Circle and Dot Logo mark -->
+    <path
+        android:fillColor="@color/button_red"
+        android:pathData="M24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,12.95 35.05,4 24,4 Z M24,38 C16.27,38 10,31.73 10,24 C10,16.27 16.27,10 24,10 C31.73,10 38,16.27 38,24 C38,31.73 31.73,38 24,38 Z" />
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M24,14 A10,10 0 0,0 14,24 A10,10 0 0,0 24,34 A10,10 0 0,0 34,24 A10,10 0 0,0 24,14 Z M24,28 A4,4 0 1,1 24,20 A4,4 0 0,1 24,28 Z" />
+</vector>

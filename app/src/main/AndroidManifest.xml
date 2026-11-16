@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
+    <application
+        android:name=".JaibTapApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JaibTap"
+        tools:targetApi="34">
+
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.home.HomeActivity" android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.nfc.NfcActivity" android:screenOrientation="portrait"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+        </activity>
+
+        <activity android:name=".ui.nfc.WithdrawalActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.nfc.DepositActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.nfc.FirqatakNfcActivity" android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.transfer.TransferActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.pos.PosTransferActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.firqatak.FirqatakActivity" android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.history.HistoryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.result.ResultActivity" android:screenOrientation="portrait" />
+    </application>
+</manifest>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- شريط التنبيه: نموذج تجريبي -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_prototype"
+            android:padding="8dp"
+            android:text="@string/prototype_notice"
+            android:textAlignment="center"
+            android:textColor="@color/warning_yellow"
+            android:textSize="11sp" />
+
+        <!-- أيقونة الحالة الكبيرة -->
+        <ImageView
+            android:id="@+id/ivResultStatusIcon"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:src="@drawable/ic_check_circle"
+            android:layout_marginTop="36dp" />
+
+        <!-- عنوان الحالة -->
+        <TextView
+            android:id="@+id/tvResultTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/operation_success"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <!-- المبلغ المنفذ -->
+        <TextView
+            android:id="@+id/tvResultAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="250.00 ريال"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <!-- بطاقة تفاصيل العملية -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_dark"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="28dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تفاصيل العملية:"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvResultDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تم تحويل المبلغ بنجاح إلى المستفيد."
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
+
+            <TextView
+                android:id="@+id/tvResultTxId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الرقم المرجعي: TX-1700000000"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- زر العودة للرئيسية -->
+        <Button
+            android:id="@+id/btnBackToHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/bg_button_primary"
+            app:backgroundTint="@null"
+            android:text="@string/back_to_home"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="36dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- الرأس والرجوع -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_back"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/withdrawal_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- بطاقة بيانات صاحب الميدالية المقروءة -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_dark"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tag_owner"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="محمد"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/tvOwnerWallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="محفظة: 771000002"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                android:layout_marginVertical="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvAuthLimit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="حد التفويض: 5,000 ريال"
+                    android:textColor="@color/warning_yellow"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btnEditLimit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="تعديل الحد"
+                    android:textColor="@color/primary_red_light"
+                    android:textSize="12sp"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- حقل إدخال المبلغ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/bg_input_field"
+            android:hint="أدخل المبلغ بالريال اليمني"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_hint"
+            android:layout_marginTop="6dp" />
+
+        <!-- حقل رمز التفويض -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_code"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etAuthCode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/bg_input_field"
+            android:hint="رمز التفويض (افتراضي: 9988 أو 1122)"
+            android:inputType="numberPassword"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_hint"
+            android:layout_marginTop="6dp" />
+
+        <!-- زر تنفيذ السحب -->
+        <Button
+            android:id="@+id/btnExecuteWithdrawal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/bg_button_primary"
+            app:backgroundTint="@null"
+            android:text="@string/execute_withdrawal"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp" />
+
+    </LinearLayout>
+</ScrollView>

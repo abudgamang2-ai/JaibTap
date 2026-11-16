@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- الرأس والرجوع -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_back"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="فرقتك عبر NFC"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- كود فرقة المستخدم الحالي المجمع -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_red"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="كود فرقتك النشطة (حساب المجمّع):"
+                android:textColor="#E0FFFFFF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvFirqatakCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FRQ100"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/tvCollectorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="المسؤول: أحمد (771000001)"
+                android:textColor="#E0FFFFFF"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- ضبط مبلغ المساهمة للعلامات القادمة -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_dark"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="مبلغ المساهمة المحدد لكل لمسة:"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/etContributionAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/input_height"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input_field"
+                    android:hint="500"
+                    android:text="500"
+                    android:inputType="numberDecimal"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_hint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ريال"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡 يمكنك تعديل المبلغ هنا قبل تقريب ميدالية أي مشارك."
+                android:textColor="@color/text_hint"
+                android:textSize="11sp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+
+        <!-- بطاقة المشارك الحالي المقروء -->
+        <LinearLayout
+            android:id="@+id/layoutParticipantCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_dark"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="المشارك الجاهز للمساهمة:"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvParticipantName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="محمد"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/tvParticipantWallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="محفظة: 771000002"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp" />
+
+            <Button
+                android:id="@+id/btnCollectContribution"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_button_primary"
+                app:backgroundTint="@null"
+                android:text="تأكيد الخصم والإيداع في الفرقة"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+
+        <!-- محاكاة لمس المشارك التالي -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnTapMohammed"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_secondary"
+                app:backgroundTint="@null"
+                android:text="لمس ميدالية محمد"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/btnTapAhmed"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_secondary"
+                app:backgroundTint="@null"
+                android:text="لمس ميدالية أحمد"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- سجل المساهمات المسجلة في هذه الفرقة -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="سجل مساهمات الفرقة:"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutContributionsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>

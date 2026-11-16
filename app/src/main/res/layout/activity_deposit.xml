@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- الرأس والرجوع -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_back"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/deposit_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- بطاقة المستفيد المعبأة تلقائياً من الميدالية -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_dark"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="إيداع لحساب المستفيد (المقروء عبر NFC):"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvBeneficiaryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="محمد"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/tvBeneficiaryWallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="رقم المحفظة: 771000002"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- حقل إدخال المبلغ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/etDepositAmount"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/bg_input_field"
+            android:hint="أدخل مبلغ الإيداع (ريال)"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_hint"
+            android:layout_marginTop="6dp" />
+
+        <!-- بطاقة ملخص العملية -->
+        <LinearLayout
+            android:id="@+id/layoutSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_secondary"
+            android:padding="14dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/summary"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvSummaryDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سيتم خصم المبلغ من رصيدك وإيداعه مباشرة في محفظة المستفيد."
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- زر تأكيد الإيداع -->
+        <Button
+            android:id="@+id/btnConfirmDeposit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/bg_button_primary"
+            app:backgroundTint="@null"
+            android:text="@string/confirm_deposit"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp" />
+
+    </LinearLayout>
+</ScrollView>

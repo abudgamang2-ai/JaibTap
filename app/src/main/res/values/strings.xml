@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">جيب تاب</string>
+    <string name="app_name_full">جيب تاب / Jaib Tap</string>
+    <string name="prototype_notice">⚠ نموذج تجريبي – لا يتصل بمحفظة جيب الرسمية</string>
+
+    <!-- Login -->
+    <string name="welcome">مرحباً بك</string>
+    <string name="login_subtitle">قم بتسجيل الدخول</string>
+    <string name="phone_number">رقم الموبايل</string>
+    <string name="password">كلمة المرور</string>
+    <string name="pin_code">رمز PIN</string>
+    <string name="login_button">تسجيل الدخول</string>
+    <string name="remember_me">تذكر الدخول</string>
+    <string name="use_pin">استخدام رمز PIN</string>
+    <string name="use_password">استخدام كلمة المرور</string>
+    <string name="login_error">رقم الموبايل أو كلمة المرور غير صحيحة</string>
+
+    <!-- Home -->
+    <string name="greeting_morning">صباح الخير</string>
+    <string name="greeting_evening">مساء الخير</string>
+    <string name="balance">الرصيد</string>
+    <string name="wallet_number">رقم المحفظة</string>
+    <string name="yer">ريال يمني</string>
+    <string name="services">الخدمات</string>
+    <string name="logout">تسجيل الخروج</string>
+
+    <!-- Services -->
+    <string name="nfc_service">NFC</string>
+    <string name="transfer_subscriber">تحويل لمشترك</string>
+    <string name="transfer_pos">دفع المشتريات</string>
+    <string name="firqatak">فرقتك</string>
+    <string name="history">سجل العمليات</string>
+
+    <!-- NFC -->
+    <string name="nfc_title">خدمة NFC</string>
+    <string name="nfc_scan_prompt">قرّب الميدالية من الهاتف</string>
+    <string name="nfc_scanning">جاري القراءة…</string>
+    <string name="nfc_not_supported">هاتفك لا يدعم تقنية NFC</string>
+    <string name="nfc_disabled">تقنية NFC غير مفعلة، يرجى تفعيلها من الإعدادات</string>
+    <string name="nfc_enable">تفعيل NFC</string>
+    <string name="nfc_tag_found">تم التعرف على الميدالية</string>
+    <string name="nfc_tag_unknown">ميدالية غير معروفة</string>
+    <string name="nfc_read_error">فشل في قراءة الميدالية</string>
+    <string name="nfc_security_note">ملاحظة: قراءة NTAG213 تثبت اكتشاف العلامة فقط، ولا تثبت أصالتها أو أمانها المالي</string>
+
+    <!-- NFC Services -->
+    <string name="withdrawal">سحب</string>
+    <string name="deposit">إيداع</string>
+    <string name="firqatak_nfc">فرقتك</string>
+
+    <!-- Withdrawal -->
+    <string name="withdrawal_title">سحب نقدي</string>
+    <string name="tag_owner">صاحب الميدالية</string>
+    <string name="wallet_number_label">رقم المحفظة</string>
+    <string name="amount">المبلغ</string>
+    <string name="enter_amount">أدخل المبلغ</string>
+    <string name="auth_code">رمز التفويض</string>
+    <string name="enter_auth_code">أدخل رمز التفويض</string>
+    <string name="execute_withdrawal">تنفيذ السحب</string>
+    <string name="auth_limit">حد التفويض: %s ريال</string>
+    <string name="amount_exceeds_limit">المبلغ يتجاوز حد التفويض</string>
+    <string name="invalid_auth_code">رمز التفويض غير صحيح</string>
+    <string name="auth_expired">انتهت صلاحية التفويض</string>
+
+    <!-- Deposit -->
+    <string name="deposit_title">إيداع</string>
+    <string name="beneficiary">المستفيد</string>
+    <string name="confirm_deposit">تأكيد الإيداع</string>
+
+    <!-- Transfer -->
+    <string name="transfer_title">تحويل إلى مشترك</string>
+    <string name="beneficiary_wallet">رقم محفظة المستفيد</string>
+    <string name="beneficiary_name">اسم المستفيد</string>
+    <string name="notes">ملاحظات</string>
+    <string name="optional_notes">ملاحظات (اختياري)</string>
+    <string name="summary">ملخص العملية</string>
+    <string name="confirm_transfer">تأكيد التحويل</string>
+    <string name="continue_btn">استمرار</string>
+
+    <!-- POS -->
+    <string name="pos_title">دفع المشتريات</string>
+    <string name="pos_number">رقم نقطة البيع</string>
+    <string name="store_name">اسم المتجر</string>
+    <string name="description">وصف العملية</string>
+    <string name="confirm_payment">تأكيد الدفع</string>
+
+    <!-- Firqatak -->
+    <string name="firqatak_title">فرقتك</string>
+    <string name="firqatak_code">كود الفرقة</string>
+    <string name="contribution_amount">مبلغ المساهمة</string>
+    <string name="scan_participant">قرّب ميدالية المشارك</string>
+    <string name="participant_added">تمت إضافة المشارك</string>
+    <string name="total_collected">إجمالي المبالغ المجمعة</string>
+    <string name="participants_list">قائمة المشاركين</string>
+    <string name="approved">تمت الموافقة</string>
+    <string name="pending">في الانتظار</string>
+    <string name="rejected">مرفوض</string>
+
+    <!-- Result -->
+    <string name="operation_success">تمت العملية بنجاح ✓</string>
+    <string name="operation_failed">فشلت العملية</string>
+    <string name="insufficient_balance">رصيد غير كافٍ</string>
+    <string name="back_to_home">العودة للرئيسية</string>
+    <string name="try_again">حاول مرة أخرى</string>
+
+    <!-- History -->
+    <string name="history_title">سجل العمليات</string>
+    <string name="no_transactions">لا توجد عمليات</string>
+    <string name="transfer_type">تحويل مشترك</string>
+    <string name="withdrawal_type">سحب نقدي</string>
+    <string name="deposit_type">إيداع</string>
+    <string name="pos_type">دفع مشتريات</string>
+    <string name="firqatak_type">فرقتك</string>
+
+    <!-- Common -->
+    <string name="confirm">تأكيد</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">حسناً</string>
+    <string name="back">رجوع</string>
+    <string name="error">خطأ</string>
+    <string name="success">نجاح</string>
+</resources>
